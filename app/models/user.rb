@@ -3,4 +3,10 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  has_attached_file :avatar,
+                      styles: { medium: "300×300#", thumb: "100×100#{}"}
+  validates_attachment_content_type :avatar,
+                                      content_type: ["image/jpg","image/jpeg","image_png"]
+
 end
